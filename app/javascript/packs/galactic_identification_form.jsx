@@ -6,17 +6,84 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
-const GalacticIdentificationForm = props => (
-  <div>
-    <div>Test</div>
-    <ul>
-      { this.state.submissions.map((submission) => {
-        return <li>test</li>
-      })}
-      <li></li>
-    </ul>
-  </div>
-)
+export default class GalacticIdentificationForm extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      submissions: props.submissions,
+      name: '',
+      id_number: '',
+      quadrant: 'zeta',
+    }
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+  }
+
+  handleSubmit(event) {
+    const url = "/api/v1/galactic_identifications";
+    console.log(this.state)
+
+    let newEntity = {
+      name: this.state.name,
+      id_number: this.state.id_number,
+      quadrant: this.state.quadrant,
+    }
+    console.log(JSON.stringify(newEntity))
+
+    fetch(url, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newEntity),
+    })
+    event.preventDefault()
+  }
+
+  render () {
+    return (
+      <div>
+        <div>Submissions</div>
+        <ul>
+          { this.state.submissions.map((submission) => {
+            return <li>{submission.name}</li>
+          })}
+          <li></li>
+        </ul>
+        <form id="galactic_identification_form" onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            name="name"
+            value={ this.state.name }
+            onChange={this.handleInputChange} />
+          <input
+            type="text"
+            name="id_number"
+            value={ this.state.id_number }
+            onChange={this.handleInputChange} />
+          <select name="quadrant" value={ this.state.quadrant } onChange={this.handleInputChange}>
+            <option value="zeta">Zeta</option>
+            <option value="beta">Beta</option>
+            <option value="theta">Theta</option>
+          </select>
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+    )
+  }
+}
 
 GalacticIdentificationForm.defaultProps = {
   identifier: '',
@@ -29,7 +96,7 @@ GalacticIdentificationForm.propTypes = {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const url = "api/v1/galactic_identifications/index"
+  const url = "/api/v1/galactic_identifications"
   fetch(url)
     .then((data) => {
       if (data.ok) {
@@ -37,14 +104,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       throw new Error("ERROR!!!");
     })
-    // .then((data)) => {
-
-    // }
-})
-
-document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(
-    <GalacticIdentificationForm />,
-    document.body.appendChild(document.createElement('div')),
-  )
+    .then((data) => {
+      ReactDOM.render(
+        <GalacticIdentificationForm submissions={data} />,
+        document.body.appendChild(document.createElement('div')),
+      )
+    })
 })

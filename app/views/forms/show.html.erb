@@ -1,4 +1,9 @@
-<%= javascript_pack_tag "#{@form.identifier}_form", props: { submissions: Object.const_get(@form.identifier.camelize).all } %>
+<%= javascript_pack_tag "#{@form.identifier}_form" %>
+<%= content_tag :div,
+  id: "submissions",
+  data: Object.const_get(@form.identifier.camelize).all.to_json do %>
+<% end %>
+
 <%= link_to 'Back', forms_path %>
 
 <p id="notice"><%= notice %></p>

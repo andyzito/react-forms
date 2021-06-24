@@ -9,3 +9,9 @@ Form.create(
     identifier: 'galactic_identification',
     name: 'Galactic Identification Card Renewal Request',
 )
+
+GalacticIdentification.create(
+    name: 'Andy Zito',
+    id_number: '1D87YR409KLV339T7',
+    quadrant: GalacticIdentification.quadrants[:theta],
+)
