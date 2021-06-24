@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Form.create(
+    identifier: 'galactic_identification',
+    name: 'Galactic Identification Card Renewal Request',
+)
