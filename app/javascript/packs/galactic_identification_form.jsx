@@ -54,31 +54,36 @@ export default class GalacticIdentificationForm extends React.Component {
 
   render () {
     return (
-      <div>
-        <div>Submissions</div>
-        <ul>
-          { this.state.submissions.map((submission) => {
-            return <li>{submission.name}</li>
-          })}
-        </ul>
-        <form id="galactic_identification_form" onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            value={ this.state.name }
-            onChange={this.handleInputChange} />
-          <input
-            type="text"
-            name="id_number"
-            value={ this.state.id_number }
-            onChange={this.handleInputChange} />
-          <select name="quadrant" value={ this.state.quadrant } onChange={this.handleInputChange}>
-            <option value="zeta">Zeta</option>
-            <option value="beta">Beta</option>
-            <option value="theta">Theta</option>
-          </select>
-          <input type="submit" value="Submit" />
-        </form>
+      <div class="form-container">
+        <div class="panel">
+          <form id="galactic_identification_form" onSubmit={this.handleSubmit}>
+            <input
+              type="text"
+              name="name"
+              value={ this.state.name }
+              onChange={this.handleInputChange} />
+            <input
+              type="text"
+              name="id_number"
+              value={ this.state.id_number }
+              onChange={this.handleInputChange} />
+            <select name="quadrant" value={ this.state.quadrant } onChange={this.handleInputChange}>
+              <option value="zeta">Zeta</option>
+              <option value="beta">Beta</option>
+              <option value="theta">Theta</option>
+            </select>
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
+
+        <div class="panel">
+          <h2>Submissions</h2>
+          <ul>
+            { this.state.submissions.map((submission) => {
+              return <li>{submission.name}</li>
+            })}
+          </ul>
+        </div>
       </div>
     )
   }

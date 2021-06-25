@@ -1,5 +1,10 @@
 <%= javascript_pack_tag "#{@form.identifier}_form" %>
 
-<% content_for :form_name do %><%= @form.name %><% end %>
+<% content_for :header do %>
+<header>
+  <%= link_to 'Back', root_path, class: 'back button' %>
+  <h1 class="font-scifi"><%= @form.name %></h1>
+</header>
+<% end %>
 
 <p id="notice"><%= notice %></p>
