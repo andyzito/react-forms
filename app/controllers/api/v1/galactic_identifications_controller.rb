@@ -16,9 +16,6 @@ class Api::V1::GalacticIdentificationsController < ApplicationController
   # end
 
   def create
-    puts "-------------------"
-    print galactic_identification_params
-    puts "==================="
     @galactic_identification = GalacticIdentification.new(galactic_identification_params)
     if @galactic_identification.save
       render json: @galactic_identification
