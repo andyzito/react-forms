@@ -34,9 +34,9 @@ export default class Form extends React.Component {
   }
 
   postEntity(data) {
-    this.setState({
-      submission: data,
-    })
+    this.setState((prevState) => ({
+      submissions: [...prevState.submissions, data],
+    }));
     // If I were to actually interact with the API, this is what it would look like.
     // const url = "/api/v1/" + this.model;
     // fetch(url, {
