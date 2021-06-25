@@ -34,9 +34,10 @@ export default class GalacticIdentificationForm extends React.Component {
       throw new Error("ERROR!!!");
     })
     .then((data) => {
+      console.log(this)
       this.setState({
         submissions: data,
-      }, () => {console.log(this.state)})
+      })
     })
   }
 
@@ -67,8 +68,7 @@ export default class GalacticIdentificationForm extends React.Component {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(newEntity),
-    })
-    this.loadSubmissions()
+    }).then(this.loadSubmissions.bind(this))
     event.preventDefault()
   }
 

@@ -31,11 +31,11 @@ export default class FormContainer extends React.Component {
               onChange={this.handleInputChange} />
             <label htmlFor="quadrant">Quadrant</label>
             <select name="quadrant" value={ this.props.quadrant } onChange={this.handleInputChange}>
-              {this.props.quadrants.map((quadrant) => {
-                return <option value="{quadrant}">{quadrant}</option>
-              })}
+              <option value="zeta">Zeta</option>
               <option value="beta">Beta</option>
               <option value="theta">Theta</option>
+              <option value="data">Data</option>
+              <option value="meta">Meta</option>
             </select>
             <input type="submit" value="Submit" />
           </form>
