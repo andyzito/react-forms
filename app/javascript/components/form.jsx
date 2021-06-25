@@ -3,6 +3,8 @@ import React from 'react'
 export default class Form extends React.Component {
   constructor (props) {
     super(props)
+
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   loadSubmissions() {
@@ -32,13 +34,17 @@ export default class Form extends React.Component {
   }
 
   postEntity(data) {
-    const url = "/api/v1/" + this.model;
-    fetch(url, {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    }).then(this.loadSubmissions.bind(this))
+    this.setState({
+      submission: data,
+    })
+    // If I were to actually interact with the API, this is what it would look like.
+    // const url = "/api/v1/" + this.model;
+    // fetch(url, {
+    //   method: "post",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(data),
+    // }).then(this.loadSubmissions.bind(this))
   }
 }

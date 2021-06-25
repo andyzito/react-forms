@@ -9,7 +9,7 @@ export default class GalacticIdentificationForm extends Form {
     super(props)
 
     this.state = {
-      submissions: [],
+      submission: {},
       name: '',
       id_number: '',
       quadrant: 'zeta',
@@ -17,7 +17,6 @@ export default class GalacticIdentificationForm extends Form {
 
     this.loadSubmissions()
 
-    this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -61,12 +60,10 @@ export default class GalacticIdentificationForm extends Form {
       </div>
 
       <div className="panel">
-        <h2>Submissions</h2>
-        <ul>
-          { this.state.submissions.map((submission) => {
-            return <li>{submission.name}</li>
-          })}
-        </ul>
+        <h2>Submission</h2>
+        <pre>
+          { JSON.stringify(this.state.submission, null, 2) }
+        </pre>
       </div>
     </div>
     )
