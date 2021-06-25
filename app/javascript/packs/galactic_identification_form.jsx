@@ -60,7 +60,6 @@ export default class GalacticIdentificationForm extends React.Component {
           { this.state.submissions.map((submission) => {
             return <li>{submission.name}</li>
           })}
-          <li></li>
         </ul>
         <form id="galactic_identification_form" onSubmit={this.handleSubmit}>
           <input

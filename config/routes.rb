@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'forms#index'
   resources :forms
 
   namespace :api do

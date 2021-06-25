@@ -11,6 +11,10 @@
   </head>
 
   <body>
+    <header>
+      <%= link_to 'Back', root_path %>
+      <h1><%= yield :form_name %></h1>
+    </header>
     <%= yield %>
   </body>
 </html>
