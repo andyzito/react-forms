@@ -1,7 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Form from './form'
 
-export default class GalacticIdentificationForm extends React.Component {
+export default class GalacticIdentificationForm extends Form {
+  model = 'galactic_identifications'
+
   constructor (props) {
     super(props)
 
@@ -18,51 +21,13 @@ export default class GalacticIdentificationForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  loadSubmissions() {
-    const url = "/api/v1/galactic_identifications"
-    fetch(url)
-    .then((data) => {
-      if (data.ok) {
-        return data.json();
-      }
-      throw new Error("ERROR!!!");
-    })
-    .then((data) => {
-      console.log(this)
-      this.setState({
-        submissions: data,
-      })
-    })
-  }
-
-  handleInputChange(event) {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
-
-    this.setState({
-      [name]: value
-    });
-    console.log(this.state)
-  }
-
   handleSubmit(event) {
-    const url = "/api/v1/galactic_identifications";
-
     let newEntity = {
       name: this.state.name,
       id_number: this.state.id_number,
       quadrant: this.state.quadrant,
     }
-    console.log(JSON.stringify(newEntity))
-
-    fetch(url, {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newEntity),
-    }).then(this.loadSubmissions.bind(this))
+    this.postEntity(newEntity)
     event.preventDefault()
   }
 

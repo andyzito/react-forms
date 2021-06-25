@@ -13,12 +13,8 @@
   <tbody>
     <% @forms.each do |form| %>
       <tr>
-        <td><%= link_to form.name, form %></td>
+        <td><%= link_to form.name, form, data: { turbolinks: false } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Form', new_form_path %>
