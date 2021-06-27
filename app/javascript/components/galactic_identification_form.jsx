@@ -16,7 +16,7 @@ export default class GalacticIdentificationForm extends Form {
       quadrant: 'zeta',
     }
 
-    // this.loadSubmissions()
+    this.loadSubmissions()
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
