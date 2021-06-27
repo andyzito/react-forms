@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_24_035347) do
+ActiveRecord::Schema.define(version: 2021_06_27_232048) do
 
   create_table "forms", force: :cascade do |t|
     t.string "name"
@@ -23,6 +23,21 @@ ActiveRecord::Schema.define(version: 2021_06_24_035347) do
     t.string "name"
     t.string "id_number"
     t.integer "quadrant"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "q_zed_incidents", force: :cascade do |t|
+    t.integer "irt_number"
+    t.string "rcode"
+    t.integer "pid_number"
+    t.integer "incident_type"
+    t.integer "incident_severity"
+    t.integer "incident_flags"
+    t.integer "response_time"
+    t.integer "response_type"
+    t.integer "response_level"
+    t.string "account_code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

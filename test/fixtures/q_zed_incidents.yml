@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  irt_number: 
+  rcode: MyString
+  pid_number: 
+  incident_type: 
+  incident_severity: 
+  response_time: 
+  response_type: 
+  response_level: 
+  has_many: 
+  account_code: MyString
+
+two:
+  irt_number: 
+  rcode: MyString
+  pid_number: 
+  incident_type: 
+  incident_severity: 
+  response_time: 
+  response_type: 
+  response_level: 
+  has_many: 
+  account_code: MyString
