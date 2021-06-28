@@ -18,4 +18,8 @@ class QZedIncident < ApplicationRecord
   validates :response_type, presence: true
   validates :response_level, presence: true
   validates :account_code, presence: true
+
+  def self.options identifier
+    return self.send(identifier.pluralize()).keys
+  end
 end

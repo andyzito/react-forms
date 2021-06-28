@@ -47,6 +47,10 @@ class Api::V1::QZedIncidentsController < ApplicationController
     end
   end
 
+  def get_options
+    render json: QZedIncident.options(params[:field])
+  end
+
   private
     def q_zed_incident_params
       params.permit(:irt_number, :rcode, :pid_number, :incident_type, :incident_severity,
