@@ -55,7 +55,26 @@ export default class QZedIncidentForm extends Form {
           label="Incident Type"
           value={ this.state.incident_type }
           handleInputChange={ this.handleInputChange }
-          optionsAttribute='incident_type'
+          optionsAttribute={ 'incident_type' }
+          model={ this.model }
+        />
+
+        <SelectInput
+          name="incident_severity"
+          label="Incident Severity"
+          value={ this.state.incident_severity }
+          handleInputChange={ this.handleInputChange }
+          optionsAttribute={ 'incident_severity' }
+          model={ this.model }
+        />
+
+        <SelectInput
+          name="incident_type"
+          label="Incident Type"
+          value={ this.state.incident_type }
+          handleInputChange={ this.handleInputChange }
+          optionsAttribute={ 'incident_type' }
+          model={ this.model }
         />
       </form>
       </FormContainer>

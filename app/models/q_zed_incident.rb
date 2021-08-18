@@ -1,10 +1,41 @@
 class QZedIncident < ApplicationRecord
-  enum incident_type: [:explosive, :implosive, :branching, :subtemporal, :other]
-  enum incident_severity: [:orion, :jupiter, :kuiper, :entropy]
-  enum incident_flags: [:space_distortion, :time_distortion, :probability_distortion, :hostiles, :reverse_dilation, :coaxial_dilation,
-    :generative_plamoid, :regenerative_plasmoid, :sync, :desync, :relativity_failure, :gravity_failure,
-    :quantum_failure, :stream_fracture, :apple
-  ]
+  @@incident_types = {
+    :explosive => 'Explosive',
+    :implosive => 'Implosive',
+    :branching => 'Branching',
+    :subtemporal => 'Subtemporal',
+    :other => 'Other',
+  }
+  enum incident_type: @@incident_types.keys
+
+  @@incident_severitys = {
+    :orion => 'Orion',
+    :jupiter => 'Jupiter',
+    :kuiper => 'Kuiper',
+    :entropy => 'Entropy'
+  }
+  enum incident_severity: @@incident_severitys.keys
+
+  # @@incident_flags = {
+  #   :space_distortion,
+  #   :time_distortion,
+  #   :probability_distortion,
+  #   :hostiles,
+  #   :reverse_dilation,
+  #   :coaxial_dilation,
+  #   :generative_plamoid,
+  #   :regenerative_plasmoid,
+  #   :sync,
+  #   :desync,
+  #   :relativity_failure,
+  #   :gravity_failure,
+  #   :quantum_failure,
+  #   :stream_fracture,
+  #   :apple
+  # }
+  # enum incident_flags: @@incident_flags.keys
+
+
   enum response_type: [:coagulative, :cognitive, :coercive, :creative, :catatonic]
   enum response_level: [:red, :green, :purple, :yellow, :violet, :blue]
 
@@ -20,6 +51,6 @@ class QZedIncident < ApplicationRecord
   validates :account_code, presence: true
 
   def self.options identifier
-    return self.send(identifier.pluralize()).keys
+    return class_variable_get('@@' + identifier.pluralize())
   end
 end
